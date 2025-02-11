@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.desafio_alura_fipe.principal.Principal;
+
 @SpringBootApplication
 public class DesafioAluraFipeApplication implements CommandLineRunner {
 
@@ -13,7 +15,9 @@ public class DesafioAluraFipeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("oi");		
+		Principal principal = new Principal();
+		
+		principal.exibirMenu();
 	}
 
 }
