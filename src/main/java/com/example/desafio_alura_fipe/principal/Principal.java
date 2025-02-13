@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.example.desafio_alura_fipe.model.Marca;
+import com.example.desafio_alura_fipe.model.Modelo;
+import com.example.desafio_alura_fipe.model.ModeloAno;
 import com.example.desafio_alura_fipe.service.ConsumoApi;
 import com.example.desafio_alura_fipe.service.ConverteDados;
 
@@ -27,7 +29,28 @@ public class Principal {
 		
 		for (Marca marca : marcas) {
 			System.out.println("Código: " + marca.codigo() +
-					"\nNome: " + marca.nome());
+					", Nome: " + marca.nome());
 		}
+		
+		System.out.println();
+		System.out.printf("Digite o código da marca desejada: ");
+		String marca = sc.nextLine();
+		
+		System.out.println();
+		
+		var jsonModelos = consumo.obterDados(ENDERECO + "/" + opcao + "/marcas/" + marca + "/modelos");
+		
+		ModeloAno modeloAno = cd.converterDados(jsonModelos, ModeloAno.class);
+		
+		for (Modelo modeloTemp : modeloAno.modelos()) {
+			System.out.println("Código: " + modeloTemp.codigo()
+					+ ", Nome: " + modeloTemp.nome());
+		}
+		
+		System.out.println();
+		System.out.printf("Digite o modelo desejado: ");
+		String modelo = sc.nextLine();
+		
+		System.out.println(modelo);
 	}
 }
